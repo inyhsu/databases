@@ -9,7 +9,16 @@ module.exports = {
   users: {
     // Ditto as above.
     get: function () {},
-    post: function () {}
+    post: function (name, result) {
+      db.query('INSERT INTO users', name, (err, res) => {
+        if(err){
+          console.log(err);
+          result(err);
+        } else {
+          result(res);
+        }
+      })
+    }
   }
 };
 
